@@ -1,13 +1,13 @@
 package edu.school21;
 
 public class Cat implements Animal{
-    String nameCat = null;
-    Integer age = 0;
-    Double height = 0.0;
+    private String nameCat = null;
+    private Integer age = 0;
+    private Double height = 0.0;
 
 
-    public Cat(String name, Integer age, Double height) {
-        this.nameCat = name;
+    public Cat(String nameCat, Integer age, Double height) {
+        this.nameCat = nameCat;
         this.age = age;
         this.height = height;
     }
@@ -36,7 +36,7 @@ public class Cat implements Animal{
     @Override
     public String toString() {
         return "Cat{" +
-                "nameCat='" + name + '\'' +
+                "nameCat='" + nameCat + '\'' +
                 ", age=" + age +
                 ", height=" + height +
                 '}';

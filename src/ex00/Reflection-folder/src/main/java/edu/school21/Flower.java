@@ -1,20 +1,21 @@
 package edu.school21;
 
 public class Flower {
-    String color = null;
-    Double price = 0.0;
-    Integer amount = 0;
+    private String color = null;
+    private Double price = 0.0;
+    private Integer amount = 0;
 
-    public Flower(){
-        String color = "No color";
-        Double price = -1.0;
-        Integer amount = -1;
-    }
 
     public Flower(String color, Double price, Integer amount) {
         this.color = color;
         this.price = price;
         this.amount = amount;
+    }
+
+    public Flower(){
+        color = "No color";
+        price = -1.0;
+        amount = -1;
     }
 
     int changeAmount(int quantity){
