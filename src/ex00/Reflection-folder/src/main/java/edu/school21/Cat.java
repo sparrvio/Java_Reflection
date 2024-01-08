@@ -1,36 +1,30 @@
 package edu.school21;
 
 public class Cat implements Animal{
-    String name = null;
+    String nameCat = null;
     Integer age = 0;
     Double height = 0.0;
-    boolean gender = false;
-    Long price = null;
 
     public Cat() {
-        name = "Cat";
+        nameCat = "Cat";
         age = 3;
         height = 3.0;
-        gender = false;
-        price = 1L;
     }
 
-    public Cat(String name, Integer age, Double height, boolean gender, Long price) {
-        this.name = name;
+    public Cat(String name, Integer age, Double height) {
+        this.nameCat = name;
         this.age = age;
         this.height = height;
-        this.gender = gender;
-        this.price = price;
     }
 
     @Override
     public void changeName(String newName) {
-        this.name = newName;
+        this.nameCat = newName;
     }
 
     @Override
-    public void growAge() {
-        this.age ++;
+    public void growAge(int age) {
+        this.age += age;
     }
 
     @Override
@@ -38,20 +32,13 @@ public class Cat implements Animal{
         this.height += gram;
     }
 
-    @Override
-    public void changePrice(Long rub) {
-        this.price += rub;
-    }
-
 
     @Override
     public String toString() {
         return "Cat{" +
-                "name='" + name + '\'' +
+                "nameCat='" + name + '\'' +
                 ", age=" + age +
                 ", height=" + height +
-                ", gender=" + gender +
-                ", price=" + price +
                 '}';
     }
 }

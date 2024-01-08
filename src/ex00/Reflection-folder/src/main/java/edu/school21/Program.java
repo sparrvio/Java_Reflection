@@ -1,20 +1,74 @@
 package edu.school21;
-import java.lang.Package;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Scanner;
+
 
 public class Program {
-    public static void main(String[] args) {
-        Cat cat = new Cat();
-        Dog dog = new Dog();
-        Class catClass = Cat.class;
-        Class dogClass = dog.getClass();
+    public static void main(String[] args)  {
+        printClassName();
+        Scanner scanner = new Scanner(System.in);
+        Class classObj = null;
+        try {
+            classObj = Class.forName("edu.school21." + scanner.next());
+        } catch (ClassNotFoundException e) {
+            System.err.println("Invalid argument");
+            System.exit(1);
+        }
+        printClassFields(classObj);
+        printClassMethods(classObj);
+        createObject(classObj);
+    }
 
-        String packageName = "edu.school21";
-        Package pkg = Package.getPackage(packageName);
+    private static void createObject(Class<?> classObj)  {
+        System.out.println("Let’s create an object.");
+        Object obj = null;
+        try {
+            obj = classObj.getConstructor(String.class, Integer.class, Double.class).newInstance("newName", 10, 20.0);
+        } catch (Exception e) {
+            System.err.println("Invalid argument");
+            System.exit(1);
+        }
+        System.out.println(obj.toString());
 
-        String impl = pkg.getImplementationTitle();
-        System.out.println(catClass.getName());
+    }
 
-        System.out.println(pkg);
-        System.out.println(impl);
+    private static void printLine() {
+        for (int i = 0; i < 20; ++i){
+            System.out.print("-");
+    }
+        System.out.println();
+    }
+    private static void printClassName() {
+        Class<Cat> catClass = Cat.class;
+        Class<Dog> dogClass = Dog.class;
+        System.out.println("Classes:");
+        System.out.println(" - " + catClass.getSimpleName());
+        System.out.println(" - " + dogClass.getSimpleName());
+        printLine();
+    }
+
+    private static void printClassFields(Class<?> classObj) {
+        Field[] fields = classObj.getFields();
+        System.out.println("fileds:");
+        for (Field fl : fields) {
+            System.out.println("     " + fl.getType().getSimpleName() + " " + fl.getName());
+        }
+    }
+
+    private static void printClassMethods(Class<Animal> classObj) {
+        System.out.println("methods");
+        Method[] method = classObj.getDeclaredMethods();
+        for (Method mt : method){
+            Class<?>[] parameterTypes = mt.getParameterTypes();
+            StringBuilder parameters = new StringBuilder();
+            for (Class<?> pr : parameterTypes){
+                parameters.append(pr.getSimpleName());
+            }
+            System.out.println("     " + mt.getReturnType().getSimpleName() + " " +
+                    mt.getName() + " " + "(" + parameters.toString() + ")");
+        }
+        printLine();
     }
 }

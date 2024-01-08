@@ -4,13 +4,13 @@ public interface Animal {
     String name = null;
     Integer age = 0;
     Double height = 0.0;
-    boolean gender = false;
-    Long price = null;
+//    boolean gender = false;
+//    Long price = null;
 
     void changeName(String newName);
-    void growAge();
+    void growAge(int age);
     void changeHeight(Double gram);
-    void changePrice(Long rub);
+//    void changePrice(Long rub);
 }
 
 
