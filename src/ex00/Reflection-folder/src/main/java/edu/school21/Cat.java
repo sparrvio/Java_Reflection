@@ -5,16 +5,16 @@ public class Cat implements Animal{
     Integer age = 0;
     Double height = 0.0;
 
-    public Cat() {
-        nameCat = "Cat";
-        age = 3;
-        height = 3.0;
-    }
 
     public Cat(String name, Integer age, Double height) {
         this.nameCat = name;
         this.age = age;
         this.height = height;
+    }
+    public Cat() {
+        nameCat = "No name";
+        age = 0;
+        height = 0.0;
     }
 
     @Override

@@ -5,15 +5,15 @@ public class Dog implements Animal {
     Integer age = 0;
     Double height = 0.0;
 
-    public Dog() {
-        nameDog = "Dog";
-        age = 5;
-        height = 7.0;
-    }
     public Dog(String name, Integer age, Double height) {
         this.nameDog = name;
         this.age = age;
         this.height = height;
+    }
+    public Dog() {
+        nameDog = "No name";
+        age = 0;
+        height = 0.0;
     }
 
 
