@@ -1,6 +1,6 @@
 package edu.school21;
 
-public class Cat implements Animal{
+public class Cat implements Animal {
     private String nameCat = null;
     private Integer age = 0;
     private Double height = 0.0;
@@ -11,6 +11,7 @@ public class Cat implements Animal{
         this.age = age;
         this.height = height;
     }
+
     public Cat() {
         nameCat = "No name";
         age = 0;
@@ -23,22 +24,24 @@ public class Cat implements Animal{
     }
 
     @Override
-    public void growAge(int age) {
+    public Integer growAge(Integer age) {
         this.age += age;
+        return this.age;
     }
 
     @Override
-    public void changeHeight(Double gram) {
+    public Double changeHeight(Double gram) {
         this.height += gram;
+        return this.height;
     }
 
 
     @Override
     public String toString() {
-        return "Cat{" +
+        return "Cat[" +
                 "nameCat='" + nameCat + '\'' +
                 ", age=" + age +
                 ", height=" + height +
-                '}';
+                ']';
     }
 }

@@ -12,33 +12,34 @@ public class Flower {
         this.amount = amount;
     }
 
-    public Flower(){
+    public Flower() {
         color = "No color";
         price = -1.0;
         amount = -1;
     }
 
-    int changeAmount(int quantity){
+    int changeAmount(int quantity) {
         this.amount += quantity;
         return amount;
     }
-    String changeColor(String color){
+
+    String changeColor(String color) {
         this.color = color;
         return color;
     }
 
-    Double changePrice(Double price){
+    Double changePrice(Double price) {
         this.price += price;
         return price;
     }
 
     @Override
     public String toString() {
-        return "Flower{" +
+        return "Flower[" +
                 "color='" + color + '\'' +
                 ", price=" + price +
                 ", amount=" + amount +
-                '}';
+                ']';
     }
 }
 

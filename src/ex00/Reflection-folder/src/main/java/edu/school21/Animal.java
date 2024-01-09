@@ -7,9 +7,9 @@ public interface Animal {
 
     void changeName(String newName);
 
-    void growAge(int age);
+    Integer growAge(Integer age);
 
-    void changeHeight(Double gram);
+    Double changeHeight(Double gram);
 
 }
 

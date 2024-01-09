@@ -24,22 +24,24 @@ public class Dog implements Animal {
     }
 
     @Override
-    public void growAge(int age) {
+    public Integer growAge(Integer age) {
         this.age += age;
+        return this.age;
     }
 
     @Override
-    public void changeHeight(Double gram) {
+    public Double changeHeight(Double gram) {
         this.height += gram;
+        return this.height;
     }
 
 
     @Override
     public String toString() {
-        return "Dog{" +
+        return "Dog[" +
                 "nameDog='" + nameDog + '\'' +
                 ", age=" + age +
                 ", height=" + height +
-                '}';
+                ']';
     }
 }
