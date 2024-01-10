@@ -1,26 +1,26 @@
-package edu.school21;
+package edu.school21.models;
 
-public class Cat implements Animal {
-    private String nameCat = null;
+public class Dog implements Animal {
+    private String nameDog = null;
     private Integer age = 0;
     private Double height = 0.0;
 
-
-    public Cat(String nameCat, Integer age, Double height) {
-        this.nameCat = nameCat;
+    public Dog(String nameDog, Integer age, Double height) {
+        this.nameDog = nameDog;
         this.age = age;
         this.height = height;
     }
 
-    public Cat() {
-        nameCat = "No name";
+    public Dog() {
+        nameDog = "No name";
         age = 0;
         height = 0.0;
     }
 
+
     @Override
     public void changeName(String newName) {
-        this.nameCat = newName;
+        this.nameDog = newName;
     }
 
     @Override
@@ -38,8 +38,8 @@ public class Cat implements Animal {
 
     @Override
     public String toString() {
-        return "Cat[" +
-                "nameCat='" + nameCat + '\'' +
+        return "Dog[" +
+                "nameDog='" + nameDog + '\'' +
                 ", age=" + age +
                 ", height=" + height +
                 ']';

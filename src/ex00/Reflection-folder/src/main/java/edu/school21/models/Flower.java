@@ -1,9 +1,9 @@
-package edu.school21;
+package edu.school21.models;
 
 public class Flower {
-    private String color = null;
-    private Double price = 0.0;
-    private Integer amount = 0;
+    private String color;
+    private Double price;
+    private Integer amount;
 
 
     public Flower(String color, Double price, Integer amount) {
@@ -18,7 +18,7 @@ public class Flower {
         amount = -1;
     }
 
-    int changeAmount(int quantity) {
+    Integer changeAmount(Integer quantity) {
         this.amount += quantity;
         return amount;
     }

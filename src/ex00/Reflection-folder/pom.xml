@@ -29,6 +29,19 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>0.10.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-nop</artifactId>
+      <version>1.7.30</version> <!-- Убедитесь, что используете последнюю версию -->
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -39,7 +52,7 @@
           <artifactId>exec-maven-plugin</artifactId>
           <version>3.1.1</version>
           <configuration>
-            <mainClass>edu.school21.Program</mainClass>
+            <mainClass>edu.school21.app.Program</mainClass>
           </configuration>
         </plugin>
         <plugin>

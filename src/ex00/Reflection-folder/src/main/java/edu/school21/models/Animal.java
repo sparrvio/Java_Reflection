@@ -1,4 +1,4 @@
-package edu.school21;
+package edu.school21.models;
 
 public interface Animal {
     String name = null;
