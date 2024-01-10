@@ -13,9 +13,6 @@ public class Cat implements Animal {
     }
 
     public Cat() {
-        nameCat = "No name";
-        age = 0;
-        height = 0.0;
     }
 
     @Override

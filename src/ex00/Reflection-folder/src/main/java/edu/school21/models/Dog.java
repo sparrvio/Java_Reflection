@@ -12,9 +12,6 @@ public class Dog implements Animal {
     }
 
     public Dog() {
-        nameDog = "No name";
-        age = 0;
-        height = 0.0;
     }
 
 

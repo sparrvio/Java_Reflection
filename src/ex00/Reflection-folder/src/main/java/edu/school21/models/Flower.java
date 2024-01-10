@@ -5,7 +5,6 @@ public class Flower {
     private Double price;
     private Integer amount;
 
-
     public Flower(String color, Double price, Integer amount) {
         this.color = color;
         this.price = price;
@@ -13,9 +12,6 @@ public class Flower {
     }
 
     public Flower() {
-        color = "No color";
-        price = -1.0;
-        amount = -1;
     }
 
     Integer changeAmount(Integer quantity) {
