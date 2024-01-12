@@ -54,3 +54,6 @@ src/ex00/Reflection-folder/.idea/
 src/ex01/Annotations-folder/.idea/
 ex01/Annotations-folder/.idea/
 .DS_Store
+src/ex02/ORM-folder/.idea/
+src/ex02/ORM-folder/src/main/java/edu/school21/models/README.md
+src/ex02/ORM-folder/target/
