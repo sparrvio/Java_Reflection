@@ -1,46 +1,18 @@
 package edu.school21.models;
 
-public class Flower {
-    private String color;
-    private Double price;
-    private Integer amount;
+import edu.school21.annotations.HtmlForm;
+import edu.school21.annotations.HtmlInput;
 
+@HtmlForm(fileName = "user_form.html", action = "/users", method = "post")
+public class UserForm {
+    @HtmlInput(type = "text", name = "first_name", placeholder = "Enter First Name")
+    private String firstName;
 
-    public Flower(String color, Double price, Integer amount) {
-        this.color = color;
-        this.price = price;
-        this.amount = amount;
-    }
+    @HtmlInput(type = "text", name = "last_name", placeholder = "Enter Last Name")
+    private String lastName;
 
-    public Flower() {
-        color = "No color";
-        price = -1.0;
-        amount = -1;
-    }
-
-    Integer changeAmount(Integer quantity) {
-        this.amount += quantity;
-        return amount;
-    }
-
-    String changeColor(String color) {
-        this.color = color;
-        return color;
-    }
-
-    Double changePrice(Double price) {
-        this.price += price;
-        return price;
-    }
-
-    @Override
-    public String toString() {
-        return "Flower[" +
-                "color='" + color + '\'' +
-                ", price=" + price +
-                ", amount=" + amount +
-                ']';
-    }
+    @HtmlInput(type = "password", name = "password", placeholder = "Enter Password")
+    private String password;
 }
 
 
