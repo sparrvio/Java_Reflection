@@ -6,9 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.TYPE)
-public @interface HtmlForm {
-    String fileName();
-    String action();
-    String method();
+@Target(ElementType.FIELD)
+public @interface HtmlInput {
+    String type();
+    String name();
+    String placeholder();
 }
