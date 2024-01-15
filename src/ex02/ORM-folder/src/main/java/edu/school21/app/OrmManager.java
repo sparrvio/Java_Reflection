@@ -3,10 +3,12 @@ package edu.school21.app;
 import edu.school21.annotations.OrmColumn;
 import edu.school21.annotations.OrmColumnId;
 import edu.school21.annotations.OrmEntity;
+import edu.school21.models.User;
 
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OrmManager {
@@ -47,7 +49,6 @@ public class OrmManager {
             statement.execute(sqlCreateTable);
         }
     }
-
     public void save(Object entityObj) {
         List<Object> fieldList = new ArrayList<>();
         fieldList = getAnnotatedFieldValues(entityObj);
@@ -69,8 +70,29 @@ public class OrmManager {
     }
 
     public <T> T findById(Long id, Class<T> aClass) {
+//        try (Connection connection = dataSource.getConnection();
+//             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM \"user\" where user_id= ?")
+//        ) {
+//            preparedStatement.setLong(1, user_id);
+//            ResultSet rs = preparedStatement.executeQuery();
+//            if (rs.next()) {
+//                int userTableId = rs.getInt("user_id");
+//                String login = rs.getString("login");
+//                String password = rs.getString("password");
+//                user = new User(userTableId, login, password, new ArrayList<>(), new ArrayList<>());
+//            }
 
+        Class<T> hh = aClass;
+
+            System.out.println(Arrays.toString(hh.getConstructors()));
+
+//        aClass.getClass() returnUser = null;
         String sqlSelect = "SELECT * FROM " + getTableName(aClass) + " WHERE id = " + id + ";";
+        try (PreparedStatement statement = connection.prepareStatement(sqlSelect)){
+            ResultSet rs = statement.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println(sqlSelect);
         T clazz = null;
         return clazz;
