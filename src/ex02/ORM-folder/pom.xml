@@ -24,62 +24,50 @@
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
             <version>5.0.1</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.1</version>
+            <version>42.6.0</version>
         </dependency>
+
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.10.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>6.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.4.14</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
-                <!--        <plugin>-->
-                <!--          <groupId>org.apache.maven.plugins</groupId>-->
-                <!--          <artifactId>maven-compiler-plugin</artifactId>-->
-                <!--          <version>3.11.0</version>-->
-                <!--          <configuration>-->
-                <!--            <source>1.8</source>-->
-                <!--            <target>1.8</target>-->
-                <!--            <compilerArgs>-->
-                <!--              <arg>-Xlint:-options</arg>-->
-                <!--            </compilerArgs>-->
-                <!--          </configuration>-->
-                <!--          <executions>-->
-                <!--            <execution>-->
-                <!--              <id>Annotations</id>-->
-                <!--              <phase>compile</phase>-->
-                <!--              <goals>-->
-                <!--                <goal>compile</goal>-->
-                <!--              </goals>-->
-                <!--              <configuration>-->
-                <!--                <proc>only</proc>-->
-                <!--                <annotationProcessors>-->
-                <!--                  <annotationProcessor>edu.school21.app.HtmlProcessor</annotationProcessor>-->
-                <!--                </annotationProcessors>-->
-                <!--              </configuration>-->
-                <!--            </execution>-->
-                <!--          </executions>-->
-                <!--        </plugin>-->
-                <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
-
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>3.1.1</version>
                     <configuration>
-<!--                        <mainClass>edu.school21.app.OrmManager</mainClass>-->
                         <mainClass>edu.school21.app.Program</mainClass>
                     </configuration>
                 </plugin>

@@ -26,3 +26,17 @@ VALUES 	(DEFAULT, 'Natalie_Portman', 'chatroom Leo', 'Hello, i am Natalie_Portma
 
 SELECT * FROM public."user"
 ORDER BY user_id ASC
+
+CREATE TABLE IF NOT EXISTS simple_user (id SERIAL PRIMARY KEY NOT NULL, firstName VARCHAR(10), lastName VARCHAR(10), age INTEGER);
+
+INSERT INTO simple_user (firstName, lastName, age) VALUES ('first', 'last', 45);
+
+UPDATE simple_user SET firstname = 'newName', lastName = 'newLast', age = 44 WHERE id = 1;
+
+SELECT * FROM simple_user WHERE id = 1
+
+
+select * from simple_user where id = 4
+
+DROP TABLE IF EXISTS simple_car;
+DROP TABLE IF EXISTS simple_user;

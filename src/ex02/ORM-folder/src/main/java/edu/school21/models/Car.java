@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 public class Car {
     @OrmColumnId(id = GenerationType.IDENTITY)
     private Long id;
+
     @OrmColumn(name = "model", length = 10)
     private String model;
 
@@ -18,4 +19,32 @@ public class Car {
 
     @OrmColumn(name = "price")
     private Double price;
+
+    public Car(String model, String color, Double price) {
+        this.model = model;
+        this.color = color;
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", color='" + color + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }
