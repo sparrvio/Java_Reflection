@@ -99,7 +99,6 @@ Method returned:
 - In a program session, interaction only with a single class is possible; a single field of its object can be modified, and a single method can be called
 - You may use throws operator.
 
-# Chapter IV
 ### Exercise 01 – Annotations – SOURCE
 
 Exercise 01: Annotations – SOURCE ||
@@ -137,7 +136,6 @@ Then, it shall be used as a base to generate "user_form.html" file with the foll
 - Project structure is at the developer's discretion.
 - To handle annotations correctly, we recommend to use special settings of maven-compiler-plugin and auto-service dependency on com.google.auto.service.
 
-# Chapter V
 ### Exercise 02 – ORM
 
 Exercise 02: ORM ||
