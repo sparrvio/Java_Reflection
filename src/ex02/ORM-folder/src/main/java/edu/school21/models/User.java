@@ -12,13 +12,13 @@ public class User {
 
     @OrmColumnId(id = GenerationType.AUTO, name = "id")
 
-    public Long id;
+    private Long id;
     @OrmColumn(name = "firstName", length = 10)
-    public String firstName;
+    private String firstName;
     @OrmColumn(name = "lastName", length = 10)
-    public String lastName;
+    private String lastName;
     @OrmColumn(name = "age")
-    public Integer age;
+    private Integer age;
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;

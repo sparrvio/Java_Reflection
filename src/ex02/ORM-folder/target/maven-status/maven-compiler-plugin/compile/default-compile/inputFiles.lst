@@ -1,0 +1,9 @@
+/Users/sparrvio/Documents/Java_Bootcamp.Day07-1/src/ex02/ORM-folder/src/main/java/edu/school21/models/User.java
+/Users/sparrvio/Documents/Java_Bootcamp.Day07-1/src/ex02/ORM-folder/src/main/java/edu/school21/annotations/OrmColumn.java
+/Users/sparrvio/Documents/Java_Bootcamp.Day07-1/src/ex02/ORM-folder/src/main/java/edu/school21/models/Car.java
+/Users/sparrvio/Documents/Java_Bootcamp.Day07-1/src/ex02/ORM-folder/src/main/java/edu/school21/annotations/OrmColumnId.java
+/Users/sparrvio/Documents/Java_Bootcamp.Day07-1/src/ex02/ORM-folder/src/main/java/edu/school21/app/OrmManager.java
+/Users/sparrvio/Documents/Java_Bootcamp.Day07-1/src/ex02/ORM-folder/src/main/java/edu/school21/repositories/RepositoryJdbcImpl.java
+/Users/sparrvio/Documents/Java_Bootcamp.Day07-1/src/ex02/ORM-folder/src/main/java/edu/school21/app/Program.java
+/Users/sparrvio/Documents/Java_Bootcamp.Day07-1/src/ex02/ORM-folder/src/main/java/edu/school21/repositories/DataSourceConfig.java
+/Users/sparrvio/Documents/Java_Bootcamp.Day07-1/src/ex02/ORM-folder/src/main/java/edu/school21/annotations/OrmEntity.java

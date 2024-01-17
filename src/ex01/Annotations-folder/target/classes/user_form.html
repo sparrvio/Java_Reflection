@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../../src/main/java/edu/school21/resources/style.css">
+</head>
+<body><form action = "/users" method = "post">
+<input type="text" id="1" name="first_name" placeholder="Enter First Name">
+<input type="text" id="2" name="last_name" placeholder="Enter Last Name">
+<input type="password" id="3" name="password" placeholder="Enter Password">
+<input type="submit" value="Send" onclick="displayMessage()">
+</form>
+<script>
+function displayMessage() {event.preventDefault();
+  var firstName = document.getElementById("1").value;
+  var lastName = document.getElementById("2").value;
+  var password = document.getElementById("3").value;
+  alert("First Name: " + firstName + "\nLast Name: " + lastName + "\nPassword: " + password);
+}
+</script>
+</body>
+</html>

@@ -79,10 +79,6 @@ public class OrmManager {
 
         Map<String, Object> values = mapIsSelectById(id, aClass);
 
-        Constructor<?>[] constructors = aClass.getDeclaredConstructors();
-        Constructor<?> constructor = null;
-        constructor = constructors[1];
-
         T entity;
         try {
             entity = aClass.getDeclaredConstructor().newInstance();
