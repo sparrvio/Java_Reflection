@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 
 @OrmEntity(table = "simple_car")
 public class Car {
-    @OrmColumnId(id = GenerationType.IDENTITY)
+    @OrmColumnId(id = GenerationType.IDENTITY, name = "id")
     private Long id;
 
     @OrmColumn(name = "model", length = 10)
@@ -24,6 +24,12 @@ public class Car {
         this.model = model;
         this.color = color;
         this.price = price;
+    }
+
+    public Car(){
+        this.model = null;
+        this.color = null;
+        this.price = 0.0;
     }
 
     @Override

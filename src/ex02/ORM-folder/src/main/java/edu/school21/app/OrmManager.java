@@ -3,13 +3,12 @@ package edu.school21.app;
 import edu.school21.annotations.OrmColumn;
 import edu.school21.annotations.OrmColumnId;
 import edu.school21.annotations.OrmEntity;
-import edu.school21.models.User;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class OrmManager {
     private final Connection connection;
@@ -49,18 +48,25 @@ public class OrmManager {
             statement.execute(sqlCreateTable);
         }
     }
+
     public void save(Object entityObj) {
         List<Object> fieldList = new ArrayList<>();
         fieldList = getAnnotatedFieldValues(entityObj);
         String tableName = getTableName(entityObj.getClass());
         Field[] fields = entityObj.getClass().getDeclaredFields();
         List<String> columns = new ArrayList<>();
+
         for (Field field : fields) {
-            columns.add(field.getName() + " ");
+            OrmColumn annotation = field.getAnnotation(OrmColumn.class);
+            if (annotation != null) {
+                String columnName = annotation.name();
+                columns.add(columnName);
+
+            }
         }
 
         String sqlInsert = "INSERT INTO " + tableName + " (" + String.join(", ", columns) + ") " +
-                "VALUES (DEFAULT, ?, ?, ?)";
+                "VALUES (?, ?, ?)";
         setSql(sqlInsert, fieldList);
         try {
             setIdEntityObject(entityObj);
@@ -70,32 +76,40 @@ public class OrmManager {
     }
 
     public <T> T findById(Long id, Class<T> aClass) {
-//        try (Connection connection = dataSource.getConnection();
-//             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM \"user\" where user_id= ?")
-//        ) {
-//            preparedStatement.setLong(1, user_id);
-//            ResultSet rs = preparedStatement.executeQuery();
-//            if (rs.next()) {
-//                int userTableId = rs.getInt("user_id");
-//                String login = rs.getString("login");
-//                String password = rs.getString("password");
-//                user = new User(userTableId, login, password, new ArrayList<>(), new ArrayList<>());
-//            }
 
-        Class<T> hh = aClass;
+        Map<String, Object> values = mapIsSelectById(id, aClass);
 
-            System.out.println(Arrays.toString(hh.getConstructors()));
+        Constructor<?>[] constructors = aClass.getDeclaredConstructors();
+        Constructor<?> constructor = null;
+        constructor = constructors[1];
 
-//        aClass.getClass() returnUser = null;
-        String sqlSelect = "SELECT * FROM " + getTableName(aClass) + " WHERE id = " + id + ";";
-        try (PreparedStatement statement = connection.prepareStatement(sqlSelect)){
-            ResultSet rs = statement.executeQuery();
-        } catch (SQLException e) {
+        T entity;
+        try {
+            entity = aClass.getDeclaredConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(sqlSelect);
-        T clazz = null;
-        return clazz;
+
+        for (Field field : aClass.getDeclaredFields()) {
+            if (field.isAnnotationPresent(OrmColumn.class)) {
+                String columnName = field.getAnnotation(OrmColumn.class).name();
+                field.setAccessible(true);
+                try {
+                    field.set(entity, values.get(columnName));
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            } else if(field.isAnnotationPresent(OrmColumnId.class)){
+                String columnName = field.getAnnotation(OrmColumnId.class).name();
+                field.setAccessible(true);
+                try {
+                    field.set(entity, id);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+        return entity;
     }
 
     public void update(Object entityObj) {
@@ -106,7 +120,11 @@ public class OrmManager {
         List<String> columns = new ArrayList<>();
         for (int i = 1; i < fields.length; i++) {
             Field field = fields[i];
-            columns.add(field.getName() + " ");
+            OrmColumn annotation = field.getAnnotation(OrmColumn.class);
+            if (annotation != null) {
+                String columnName = annotation.name();
+                columns.add(columnName);
+            }
         }
         Long id = getId(entityObj);
 
@@ -116,6 +134,39 @@ public class OrmManager {
             setIdEntityObject(entityObj);
         } catch (SQLException | NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private  <T> Map<String, Object> mapIsSelectById(Long id, Class<T> aClass) {
+        String sqlSelect = "SELECT * FROM " + getTableName(aClass) + " WHERE id = ?;";
+        try (PreparedStatement statement = connection.prepareStatement(sqlSelect)) {
+            statement.setLong(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Map<String, Object> fieldValues = new HashMap<>();
+
+                    for (Field field : aClass.getDeclaredFields()) {
+                        if (field.isAnnotationPresent(OrmColumn.class)) {
+                            String columnName = field.getAnnotation(OrmColumn.class).name();
+                            field.setAccessible(true);
+                            Object value = resultSet.getObject(columnName);
+                            fieldValues.put(field.getName(), value);
+                        } else if(field.isAnnotationPresent(OrmColumnId.class)){
+                            String columnName = field.getAnnotation(OrmColumnId.class).name();
+                            field.setAccessible(true);
+                            Object value = resultSet.getObject(columnName);
+                            fieldValues.put(field.getName(), value);
+                        }
+                    }
+                    return fieldValues;
+                } else {
+                    System.err.println("Invalid argument");
+                    System.exit(1);
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to execute SQL query", e);
         }
     }
 
@@ -146,7 +197,7 @@ public class OrmManager {
         }
     }
 
-    private Long getId (Object entityObj){
+    private Long getId(Object entityObj) {
         Field idField = null;
         Long id = 0L;
         try {
@@ -156,7 +207,7 @@ public class OrmManager {
         } catch (NoSuchFieldException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
-        return  id;
+        return id;
     }
 
     void printSql(String message) {

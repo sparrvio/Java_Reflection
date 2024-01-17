@@ -10,8 +10,8 @@ import javax.persistence.GenerationType;
 @OrmEntity(table = "simple_user")
 public class User {
 
-    @OrmColumnId(id = GenerationType.AUTO)
-//    @OrmColumn(name = "id")
+    @OrmColumnId(id = GenerationType.AUTO, name = "id")
+
     public Long id;
     @OrmColumn(name = "firstName", length = 10)
     public String firstName;
@@ -37,6 +37,13 @@ public class User {
         this.lastName = lastName;
         this.age = age;
     }
+    public User() {
+        this.id = 0L;
+        this.firstName = null;
+        this.lastName = null;
+        this.age = 0;
+    }
+
 
     @Override
     public String toString() {
